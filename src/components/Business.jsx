@@ -2,6 +2,14 @@ import { features } from "../constants";
 import styles, { layout } from "../styles";
 import Button from "./Button";
 
+const FeatureCard = ({icon, title, content, index}) => (
+  <div>
+    <div className={`flex flex-row p-6 -rounded-[20px] ${index !== features.length - 1} ? "mb-6" : "mb-0"`}>
+      <img src={icon} alt="icon"  className="w-[50%] h-[50%] object-contain"/>
+    </div>
+  </div>
+)
+
 function Business() {
   return (
     <section id="features" className={layout.section}>
@@ -16,6 +24,11 @@ function Business() {
           of credit cards on the market.
         </p>
         <Button styles='mt-10'/>
+      </div>
+      <div className={`${layout.sectionImg} flex-col`}>
+        {features.map((feature,index) => (
+          <FeatureCard key={feature.id} {...feature} index={index}/>
+        ))}
       </div>
     </section>
   );
